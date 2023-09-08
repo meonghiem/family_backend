@@ -9,4 +9,7 @@ B3: ./venv/Scripts/activate để run môi trường ảo
 
 B4: pip install -r requirements.txt để cài thư viện
 
-B5: connect db thay SQLALCHEMY_DATABASE_URL trong /db/__init__.py
+B5: connect db  = thay SQLALCHEMY_DATABASE_URL trong /db/__init__.py
+
+B6: alembic upgrade head
+
