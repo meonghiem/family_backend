@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  # app:
+  #   image: python:3.10.10
+  #   command: sh -c "pip install -r requirements.txt && uvicorn main:app --reload"
+  #   ports:
+  #     - 8000:3000
+  #   working_dir: /app
+  #   # volumes:
+  #   #   - ./:/app
+  #   environment:
+  #     MYSQL_HOST: mysql
+  #     MYSQL_USER: root
+  #     MYSQL_PASSWORD: Cocapizza2
+  #     MYSQL_DB: my_study
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: Cocapizza2
+      MYSQL_DATABASE: my_study
+    ports:
+      - 3306:3306
+# volumes:
+#   todo-mysql-data:
+
