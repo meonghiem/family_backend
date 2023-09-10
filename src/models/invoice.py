@@ -15,7 +15,7 @@ class Invoice(BaseModel):
     invoice_details = relationship('InvoiceDetail',back_populates="invoice")
     shop = relationship('Shop',back_populates="invoices")
     customer = relationship('Customer',back_populates="invoices")
-    
+    type = Column(Integer, server_default="0") # 0: export, 1: import 
     
 class InvoiceDetail(BaseModel):
     __tablename__ = 'invoice_detail'
@@ -24,5 +24,8 @@ class InvoiceDetail(BaseModel):
     invoice_id = Column(Integer, ForeignKey("invoice.id", ondelete="CASCADE"),nullable=False)
     quantity = Column(Integer, nullable=False)
     invoice = relationship('Invoice', back_populates="invoice_details")
+    price = Column(Double, nullable=False)
+    total = Column(Double, nullable=False)
+
     
     
