@@ -41,13 +41,13 @@ async def create(
 ):
     id = await user_service.create_customer(db, data)
     customer = await user_service.get_customer(db, id)
-    obj = {
-        "id":  customer.id,
-        "username": customer.username,
-        "role_id": ROLE.USER,
-    }
-    token = await user_service.create_token(auth, obj)
-    return token
+    # obj = {
+    #     "id":  customer.id,
+    #     "username": customer.username,
+    #     "role_id": ROLE.USER,
+    # }
+    # token = await user_service.create_token(auth, obj)
+    return {"message": "success"}
 
 @router.get('/refresh_token')
 async def refresh_token(auth: AuthJWT = Depends()):

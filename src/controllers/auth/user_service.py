@@ -2,7 +2,7 @@ from datetime import timedelta
 import json
 from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, insert
+from sqlalchemy import or_, select, insert
 from fastapi_jwt_auth import AuthJWT
 from src.models.account import Shop
 from src.models import Customer
@@ -18,12 +18,15 @@ async def check_shop(db:AsyncSession, id: int):
     return shop
     
 async def create_customer(db: AsyncSession, data: SignUpRequest):
-    stm = select(Customer).filter_by(
-        username= data.username,
+    stm = select(Customer).filter(or_(
+
+        Customer.username== data.username,
+        Customer.email == data.email
+    )
         )
-    customer = await db.execute(stm)
+    customer = (await db.execute(stm)).scalars().first()
     if customer:
-        raise HTTPException(detail='account has already existed', status_code=400)
+        raise HTTPException(detail='username or email has already existed', status_code=400)
     stm = insert(Customer).values(
         username= data.username,
         password= data.password,
