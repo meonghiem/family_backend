@@ -14,7 +14,7 @@ from src.utils.utils import CustomORJSONResponse
 
 app = FastAPI(default_response_class=CustomORJSONResponse)
 origins = [
-    "http://localhost",
+    "http://localhost:3000",
     "http://localhost:8080",
 ]
 

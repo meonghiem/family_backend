@@ -18,7 +18,7 @@ async def login(
     password = data.password
     account = await user_service.check_account(db, username, password)
     if not account:
-        raise HTTPException(detail ='Account is not exist', status_code=404)
+        raise HTTPException(detail ='Account is not exist', status_code=400)
     id= account.id
     obj = {
         "id": account.id,
