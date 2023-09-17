@@ -8,6 +8,9 @@ class InvoiceDetailType(BaseModel):
 class InvoiceDetailCreateModel(InvoiceDetailType):
     invoice_id: int
 
+class InvoiceDetailUpdateModel(InvoiceDetailType):
+    id: int
+
 class InvoiceModel(BaseModel):
     customer_id: int
     shop_id: int
@@ -18,4 +21,9 @@ class InvoiceModel(BaseModel):
 class InvoiceCreateModel(BaseModel):
     invoice: InvoiceModel
     invoice_details: list[InvoiceDetailType]
+
+class InvoiceUpdateModel(BaseModel):
+    id: int
+    invoice: InvoiceModel
+    invoice_details: list[InvoiceDetailUpdateModel]
 

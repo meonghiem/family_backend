@@ -21,12 +21,9 @@ class Invoice(BaseModel):
     def to_json(self):
         return{
             "id": self.id,
-            "customer": self.customer,
-            "shop": self.shop,
             "is_export": self.is_export,
             "is_paid": self.is_paid,
             "total_amount": self.total_amount,
-            "invoice_details": self.invoice_details,
             "created_at": str(self.created_at),
             "updated_at": str(self.updated_at),
             "type": self.type

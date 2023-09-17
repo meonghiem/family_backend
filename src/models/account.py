@@ -16,6 +16,16 @@ class Customer(BaseModel):
     address = Column(String(255), nullable=True)
     invoices:Mapped[List["Invoice"]] = relationship( back_populates="customer", lazy='dynamic')
     
+    @property
+    def to_json(self):
+        return {
+            "id": self.id,
+            "username":self.username,
+            "created_at": str(self.created_at),
+            "phone": self.phone,
+            "address": self.address
+        }
+    
 # class Customer(Account):
 #     __tablename__ = 'customer'
 #     id = Column(Integer, ForeignKey('account.id'), primary_key=True)
