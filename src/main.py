@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from src.configs.auth_config import Settings
 from src.controllers.auth.auth_controller import router as user_router
+from src.controllers.products.product_controller import router as product_router
+from src.controllers.invoices.invoice_controller import router as invoice_router
 from fastapi.responses import JSONResponse
 from fastapi_jwt_auth import AuthJWT
 from fastapi_jwt_auth.exceptions import AuthJWTException
@@ -42,7 +44,9 @@ def authjwt_exception_handler(request: Request, exc: AuthJWTException):
 
 
 
-app.include_router(user_router, prefix="/api")
+app.include_router(user_router, prefix="/api", tags=['User'])
+app.include_router(product_router, prefix="/api", tags=['Product'])
+app.include_router(invoice_router, prefix="/api", tags=['Invoice'])
 
 @app.get("/")
 async def hello_world():
